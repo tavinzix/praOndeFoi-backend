@@ -1,0 +1,69 @@
+{
+    "extends": "@adonisjs/tsconfig/tsconfig.app.json",
+    "compilerOptions": {
+        "rootDir": "./",
+        "outDir": "./build",
+        "baseUrl": "./",
+        "skipLibCheck": true,
+        "noImplicitAny": false,
+        "useUnknownInCatchVariables": false,
+        "paths": {
+            "#controllers/*": [
+                "app/controllers/*"
+            ],
+            "#exceptions/*": [
+                "app/exceptions/*"
+            ],
+            "#models/*": [
+                "app/Models@/*"
+            ],
+            "#helpers/*": [
+                "app/helpers/*"
+            ],
+            "#mails/*": [
+                "app/mails/*"
+            ],
+            "#services/*": [
+                "app/services/*"
+            ],
+            "#listeners/*": [
+                "app/listeners/*"
+            ],
+            "#events/*": [
+                "app/events/*"
+            ],
+            "#middleware/*": [
+                "app/middleware/*"
+            ],
+            "#validators/*": [
+                "app/validators/*"
+            ],
+            "#providers/*": [
+                "providers/*"
+            ],
+            "#policies/*": [
+                "app/policies/*"
+            ],
+            "#abilities/*": [
+                "app/abilities/*"
+            ],
+            "#database/*": [
+                "database/*"
+            ],
+            "#start/*": [
+                "start/*"
+            ],
+            "#tests/*": [
+                "tests/*"
+            ],
+            "#config/*": [
+                "config/*"
+            ]
+        }
+    },
+    "ts-node": {
+        "require": [
+            "tsconfig-paths/register"
+        ]
+    }
+}
