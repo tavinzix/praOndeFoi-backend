@@ -5,14 +5,14 @@ import env from '#start/env'
 
 export default class ApiTokenMiddleware {
   async handle(ctx: HttpContext, next: NextFn) {
-    const authorization = ctx.request.header('authorization')
-    const expectedToken = `Bearer ${env.get('TOKENAPI')}`
+    const providedToken = ctx.request.header('tokenapi')
+    const expectedToken = env.get('TOKENAPI')
 
-    if (!authorization || authorization.length !== expectedToken.length) {
+    if (!providedToken || providedToken.length !== expectedToken.length) {
       return ctx.response.unauthorized({ message: 'Token da API inválido ou ausente' })
     }
 
-    const provided = Buffer.from(authorization)
+    const provided = Buffer.from(providedToken)
     const expected = Buffer.from(expectedToken)
 
     if (!timingSafeEqual(provided, expected)) {

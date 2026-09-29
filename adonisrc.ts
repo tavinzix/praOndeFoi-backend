@@ -26,7 +26,6 @@ export default defineConfig({
     preloads: [
         () => import('#start/routes'),
         () => import('#start/kernel'),
-        () => import('#start/ws'),
     ],
     tests: {
         suites: [

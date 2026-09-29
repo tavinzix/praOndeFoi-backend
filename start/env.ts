@@ -17,7 +17,6 @@ export default await Env.create(new URL('../', import.meta.url), {
     APP_KEY: Env.schema.string(),
     HOST: Env.schema.string({ format: 'host' }),
     LOG_LEVEL: Env.schema.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace']),
-    FRONTEND_URL: Env.schema.string(),
     TOKENAPI: Env.schema.string(),
 
     /*
@@ -44,12 +43,4 @@ export default await Env.create(new URL('../', import.meta.url), {
     SMTP_HOST: Env.schema.string(),
     SMTP_PORT: Env.schema.string(),
 
-    /*
-    |----------------------------------------------------------
-    | Variables for configuring the stripe package
-    |----------------------------------------------------------
-    */
-    STRIPE_SECRET_KEY: Env.schema.string(),
-    STRIPE_PUBLISHABLE_KEY: Env.schema.string(),
-    STRIPE_WEBHOOK_SECRET: Env.schema.string.optional(),
 })
