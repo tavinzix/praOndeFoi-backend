@@ -1,4 +1,4 @@
-import Usuarios from '#models/usuarios'
+import Users from '#models/users'
 import VerificacaoEmail from '#models/verificacao_email'
 import { DateTime } from 'luxon'
 import mail from '@adonisjs/mail/services/main'
@@ -29,7 +29,7 @@ export function geraCodigoVerificacao(tamanho = 6): string {
 }
 
 export default class EnvioEmail {
-    public static async enviarCodigoVerificacao(usuario: Usuarios) {
+    public static async enviarCodigoVerificacao(usuario: Users) {
         await VerificacaoEmail.query().where('user_id', usuario.id).delete()
 
         const codigo = geraCodigoVerificacao()
@@ -213,7 +213,7 @@ export default class EnvioEmail {
         })
     }
 
-    public static async enviarCodigoRecuperacao(usuario: Usuarios, codigo: string) {
+    public static async enviarCodigoRecuperacao(usuario: Users, codigo: string) {
         await mail.send((message) => {
             message
                 .to(usuario.email)
