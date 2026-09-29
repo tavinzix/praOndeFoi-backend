@@ -1,12 +1,14 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, beforeSave } from '@adonisjs/lucid/orm'
+import { BaseModel, column, beforeSave, hasMany } from '@adonisjs/lucid/orm'
+import type { HasMany } from '@adonisjs/lucid/types/relations'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import { compose } from '@adonisjs/core/helpers'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import hash from '@adonisjs/core/services/hash'
+import UserClassificationRule from '#models/user_classification_rule'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
-    uids: ['cpf'],
+    uids: ['email'],
     passwordColumnName: 'password',
 })
 
@@ -42,4 +44,7 @@ export default class Users extends compose(BaseModel, AuthFinder) {
     }
 
     static accessTokens = DbAccessTokensProvider.forModel(Users)
+
+    @hasMany(() => UserClassificationRule, { foreignKey: 'userId' })
+    declare classificationRules: HasMany<typeof UserClassificationRule>
 }
