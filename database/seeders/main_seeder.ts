@@ -7,9 +7,11 @@ import NormalizedProductsSeeder from '#database/seeders/normalized_products_seed
 import PurchaseItemsSeeder from '#database/seeders/purchase_items_seeder'
 import PurchasesSeeder from '#database/seeders/purchases_seeder'
 import UserClassificationRulesSeeder from '#database/seeders/user_classification_rules_seeder'
+import UserSeeder from '#database/seeders/user_seeder'
 
 export default class MainSeeder extends BaseSeeder {
   async run() {
+    await new UserSeeder(this.client).run()
     await new CategoriesSeeder(this.client).run()
     await new EstablishmentsSeeder(this.client).run()
     await new FamilyGroupsSeeder(this.client).run()

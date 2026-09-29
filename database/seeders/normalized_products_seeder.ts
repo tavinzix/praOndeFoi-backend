@@ -5,10 +5,12 @@ export default class NormalizedProductsSeeder extends BaseSeeder {
     async run() {
         await NormalizedProduct.createMany([
             {
-                name: 'Arroz'
+                name: 'Arroz',
+                categoryId:5
             },
             {
-                name: ' Feijão'
+                name: ' Feijão',
+                categoryId:6
             }
         ])
     }

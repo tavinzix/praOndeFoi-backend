@@ -6,11 +6,11 @@ import { loginValidator, updatePasswordValidator } from '#validators/AuthValidat
 
 export default class AuthController {
     public async login({ request, response }: HttpContext) {
-        const { email, senha } = await request.validateUsing(loginValidator)
+        const { email, password } = await request.validateUsing(loginValidator)
 
         let user;
         try {
-            user = await Users.verifyCredentials(email, senha)
+            user = await Users.verifyCredentials(email, password)
         } catch (e) {
             if (e instanceof AppException) throw e
             return response.unauthorized({ message: 'Usuário ou senha inválidos' })
@@ -57,7 +57,7 @@ export default class AuthController {
             return response.unauthorized({ message: 'Senha atual incorreta' })
         }
 
-        await userService.updatePassword(user.id, senhaNova)
+        await userService.updatePassword(user.userId, senhaNova)
         return response.ok({ message: 'Senha alterada com sucesso' })
     }
 }
