@@ -16,8 +16,8 @@ Route.group(() => {
 
     //usuarios
     Route.group(() => {
-        Route.post('/create/usuarios', [UserController, 'createUser'])
-        Route.patch('/update/usuarios', [UserController, 'updateUser']).use(middleware.auth())
-        Route.get('/info/usuarios', [UserController, 'userInfo']).use(middleware.auth())
+        Route.post('/create/users', [UserController, 'createUser'])
+        Route.patch('/update/users', [UserController, 'updateUser']).use(middleware.auth())
+        Route.get('/info/users', [UserController, 'userInfo']).use(middleware.auth())
     })
 }).use(middleware.apiToken())
